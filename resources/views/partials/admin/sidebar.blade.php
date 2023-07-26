@@ -87,7 +87,7 @@
                 <li
                     class="nav-item menu-open">
                     <a href="#"
-                        class="nav-link {{ Route::is('absensi.*') ? 'active' : '' }}" style="color: black">
+                        class="nav-link {{ Route::is('absensi.*','izin.*') ? 'active' : '' }}" style="color: black">
                         <i class="fa-solid fa-database"></i>
                         <p>
                             Absensi
@@ -100,6 +100,13 @@
                                 class="nav-link {{ Route::is('absensi.*') ? 'active' : '' }}" style="color: black">
                                 <i class="fa-solid fa-table nav-icon"></i>
                                 <p>Data Absensi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/izin/data-izin"
+                                class="nav-link {{ Route::is('izin.*') ? 'active' : '' }}" style="color: black">
+                                <i class="fa-solid fa-sticky-note nav-icon"></i>
+                                <p>Izin</p>
                             </a>
                         </li>
                     </ul>

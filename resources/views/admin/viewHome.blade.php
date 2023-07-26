@@ -7,8 +7,8 @@
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>150</h3>
-              <p>New Orders</p>
+              <h3>{{ $karyawan }}</h3>
+              <p>Karyawan</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -21,9 +21,9 @@
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>{{ $outlet }}</h3>
 
-              <p>Bounce Rate</p>
+              <p>Outlet</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>

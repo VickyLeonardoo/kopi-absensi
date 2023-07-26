@@ -107,10 +107,16 @@
                                         @endif
                                     </td>
 
-                                    <td>{{ $da->status }}</td>
                                     <td>
-                                        <a href="" class="btn btn-success" title="Konfirmasi Kehadiran"><i class="fas fa-check"></i></a>
-                                        <a href="" class="btn btn-warning" title="Upload Foto"><i class="fas fa-rotate"></i></a>
+                                        @if ($da->status == 'Pending')
+                                            <span class="badge badge-warning">{{ $da->status }}</span></td>
+                                        @elseif ($da->status == 'Hadir')
+                                            <span class="badge badge-success">{{ $da->status }}</span></td>
+                                        @else
+                                            <span class="badge badge-danger">{{ $da->status }}</span></td>
+                                        @endif
+                                    <td>
+                                        <button type="button" class="btn btn-success" title="Setuju " data-toggle="modal" data-target="#modal-default-{{ $da->id }}"><i class="fas fa-tasks"></i></button>
                                     </td>
 
                                 </tr>
@@ -138,5 +144,5 @@
         </div>
     </section>
 </section>
-
+@include('admin.absensi.modal')
 @endsection

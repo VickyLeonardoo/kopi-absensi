@@ -2,6 +2,7 @@
 
 use App\Models\Outlet;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IzinController;
 use App\Http\Controllers\AbsenController;
@@ -25,6 +26,13 @@ use App\Http\Controllers\KeteranganController;
 */
 
 Route::get('/', function () {
+    return view('auth.login');
+});
+Route::get('/test', function () {
+    Artisan::call('optimize');
+});
+
+Route::DELETE('/tes', function () {
     return view('auth.login');
 });
 
@@ -71,7 +79,10 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::post('/admin/master-data/karyawan/hapus-data/{id}',[KeteranganController::class,'hapusData'])->name('keterangan.hapus');
         //Abnsensi
         Route::get('/admin/absensi/data-absensi',[AbsenController::class,'viewDataAbsen'])->name('absensi.home');
-
+        Route::post('/admin/absensi/konfirmasi-absensi/{id}',[AbsenController::class,'konfirmasiAbsen'])->name('absensi.konfirmasi');
+        //Izin
+        Route::get('/admin/izin/data-izin',[IzinController::class,'viewIzin'])->name('izin.home');
+        Route::post('/admin/izin/setuju-izin/{id}',[IzinController::class,'setujuIzin'])->name('izin.setuju');
     });
 });
 

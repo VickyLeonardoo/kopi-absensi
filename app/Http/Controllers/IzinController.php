@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Izin;
+use App\Models\Absensi;
 use App\Models\Keterangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,19 +11,20 @@ use Illuminate\Support\Facades\Auth;
 class IzinController extends Controller
 {
     public function viewIzin(){
-        if (Auth::guard('user')->user()->role_id == 1 && 2) {
-            return 'admin';
-        }else{
+        if (Auth::guard('user')->user()->role == 1 || Auth::guard('user')->user()->role == 2) {
+            return view('admin.izin.viewIzin',[
+                'title' => 'Izin',
+                'izin' => Izin::where('status', 'Pending')->get(),
+            ]);
+        } else {
             $id = auth()->id();
             $ket = Keterangan::all();
-            return view('karyawan.izin.viewIzin',[
+            return view('karyawan.izin.viewIzin', [
                 'title' => 'Izin',
-                'izin' => Izin::where('user_id',$id)->get(),
+                'izin' => Izin::where('user_id', $id)->get(),
                 'ket' => $ket,
             ]);
         }
-
-
     }
 
     public function simpanIzin(Request $request){
@@ -48,5 +50,20 @@ class IzinController extends Controller
         }
         Izin::create($data);
         return redirect()->back()->withToastSuccess('Data Berhasil Disimpan');
+    }
+
+    public function setujuIzin(Request $request,$id){
+        $user_id = $request->user_id;
+        $izin = Izin::find($id);
+        $tglIzin = $izin->tglIzin;
+        $absensi = Absensi::where('tglAbsen', $tglIzin)->where('user_id', $user_id)->first();
+        if ($absensi == '') {
+            Izin::find($id)->update(['status'=> 'Setuju']);
+        }else{
+            $absensi->delete();
+            Izin::find($id)->update(['status'=> 'Setuju']);
+        }
+        return redirect()->back()->withToastSuccess('Izin Berhasil Disetujui');
+
     }
 }

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class AbsenController extends Controller
 {
     public function viewDataAbsen(Request $request){
+
         date_default_timezone_set('Asia/Jakarta');
         $tglskrg = date('Y-m-d');
         $data_absen = Absensi::where('tglAbsen', $tglskrg);
@@ -149,6 +150,22 @@ class AbsenController extends Controller
 
         Absensi::where('id', $id)->update($validatedData);
         return redirect()->back()->withToastSuccess('Berhasil Absen Pulang');
+    }
+
+    public function konfirmasiAbsen(Request $request, $id){
+        $absensi = Absensi::find($id);
+        $user = User::find($request->user_id);
+        if ($request->status == 'Hadir') {
+            if ($absensi->status != 'Hadir') {
+                $absensi->update(['status' => 'Hadir']);
+                return redirect()->back()->withToastSuccess('Berhasil Konfirmasi Kehadiran '.$user->nama);
+            }else{
+                return redirect()->back()->with('toast_warning',$user->nama.' Sudah Dikonfirmasi');
+            }
+        }else{
+            $absensi->update(['status' => 'Ditolak']);
+            return redirect()->back()->withToastSuccess('Berhasil Konfirmasi Kehadiran '.$user->nama);
+        }
     }
 
 }
