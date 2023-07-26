@@ -38,4 +38,28 @@ class PegawaiController extends Controller
             'shift_karyawan' => Absensi::where('user_id', $user_login)->where('tglAbsen', $tanggal)->get()
         ]);
     }
+
+    public function viewData(Request $request)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $tglskrg = date('Y-m-d');
+        $data_absen = Absensi::where('tglAbsen', $tglskrg)->where('user_id', auth()->user()->id);
+
+        if($request["mulai"] == null) {
+            $request["mulai"] = $request["akhir"];
+        }
+
+        if($request["akhir"] == null) {
+            $request["akhir"] = $request["mulai"];
+        }
+
+        if ($request["mulai"] && $request["akhir"]) {
+            $data_absen = Absensi::where('user_id', auth()->user()->id)->whereBetween('tglAbsen', [$request["mulai"], $request["akhir"]]);
+        }
+
+        return view('karyawan.absensi.viewDataAbsen', [
+            'title' => 'My Absen',
+            'data_absen' => $data_absen->get()
+        ]);
+    }
 }

@@ -168,4 +168,47 @@ class AbsenController extends Controller
         }
     }
 
+    public function viewUpload(){
+        $user_login = Auth::guard('user')->user()->id;
+        $tanggal = "";
+        $tglskrg = date('Y-m-d');
+        $tglkmrn = date('Y-m-d', strtotime('-1 days'));
+        $mapping_shift = Absensi::where('user_id', $user_login)->where('tglAbsen', $tglkmrn)->get();
+        return view('karyawan.absensi.viewUpload',[
+            'title' => 'Absensi',
+            'shift_karyawan' => Absensi::where('user_id', $user_login)->where('tglAbsen', $tglskrg)->get(),
+        ]);
+    }
+
+    public function uploadFoto(Request $request, $id){
+        $absensi = Absensi::find($id);
+        $this->hapusFotoLama($absensi);
+        $foto = $request["fotoMasuk"];
+        $image_parts = explode(";base64,", $foto);
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = 'public/foto_jam_absen/' . uniqid() . '.jpeg';
+        Storage::put($fileName, $image_base64);
+        $request["fotoMasuk"] = str_replace('public/', '', $fileName);
+        $request["status"] = "Pending";
+        $validatedData = $request->validate([
+            'fotoMasuk' => 'required',
+            'status' => 'required',
+        ]);
+
+        Absensi::where('id', $id)->update($validatedData);
+        return redirect()->back()->withToastSuccess('Berhasil Update Foto Absen Masuk');
+    }
+
+    private function hapusFotoLama($absensi){
+        if ($absensi->fotoMasuk) {
+            // Konversi path relatif menjadi path absolut menggunakan storage_path()
+            $path = storage_path('app/public/' . $absensi->fotoMasuk);
+
+            // Hapus foto lama dari direktori penyimpanan
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+    }
+
 }

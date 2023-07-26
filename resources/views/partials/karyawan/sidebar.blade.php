@@ -48,7 +48,7 @@
                 <hr style="background-color:dimgray">
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link {{ Route::is('pegawai.absen*','absen.*','izin.*') ? 'active' : '' }}">
+                    <a href="#" class="nav-link {{ Route::is('pegawai.absen*','absen.*','izin.*','my.absen') ? 'active' : '' }}">
                         <i class="fa-solid fa-database"></i>
                         <p>
                             Absensi
@@ -64,8 +64,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/master-data/shift"
-                                class="nav-link {{ Route::is('shift.*') ? 'active' : '' }}">
+                            <a href="/pegawai/data-absen"
+                                class="nav-link {{ Route::is('my.absen') ? 'active' : '' }}">
                                 <i class="fa-solid fa-rotate nav-icon"></i>
                                 <p>My Absen</p>
                             </a>
