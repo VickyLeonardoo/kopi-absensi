@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('izins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreignId('ket_izin_id')->references('id')->on('ket_izins');
-            $table->timestamp('tglIzin');
+            $table->foreignId('keterangan_id')->references('id')->on('keterangans');
+            $table->date('tglIzin');
             $table->text('fotoIzin');
+            $table->enum('status', ['Pending', 'Setuju', 'Ditolak'])->default('Pending');
             $table->timestamps();
         });
     }

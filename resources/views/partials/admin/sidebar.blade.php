@@ -1,9 +1,6 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-warning elevation-4" style="background-color: #f4f6f9">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-        <img src="{{ asset('asset') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
     <!-- Sidebar -->
@@ -15,12 +12,12 @@
                     class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block" style="color: black">{{ Auth::guard('user')->user()->nama }}</a>
             </div>
         </div>
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
+        {{-- <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
@@ -29,7 +26,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -37,7 +34,7 @@
                 <li
                     class="nav-item {{ Route::is('admin.home*') ? 'menu-open' : '' }}">
                     <a href="/admin/home"
-                        class="nav-link {{ Route::is('admin.home*') ? 'active' : '' }}">
+                        class="nav-link {{ Route::is('admin.home*') ? 'active' : '' }}" style="color: black">
                         <i class="fa-solid fa-database"></i>
                         <p>
                             Dashboard
@@ -48,39 +45,39 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li
-                    class="nav-item {{ Route::is('outlet.*','shift.*','karyawan.*') ? 'menu-open' : '' }}">
+                    class="nav-item menu-open">
                     <a href="#"
-                        class="nav-link {{ Route::is('outlet.*','shift.*','karyawan.*') ? 'active' : '' }}">
+                        class="nav-link {{ Route::is('outlet.*','shift.*','karyawan.*','keterangan.*') ? 'active' : '' }}" style="color: black">
                         <i class="fa-solid fa-database"></i>
-                        <p>
+                        <p >
                             Master Data
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li class="nav-item" >
                             <a href="/admin/master-data/outlet"
-                                class="nav-link {{ Route::is('outlet.*') ? 'active' : '' }}">
+                                class="nav-link {{ Route::is('outlet.*') ? 'active' : '' }}" style="color: black">
                                 <i class="fa-solid fa-store nav-icon"></i>
-                                <p>Outlet</p>
+                                <p >Outlet</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/admin/master-data/shift"
-                                class="nav-link {{ Route::is('shift.*') ? 'active' : '' }}">
+                                class="nav-link {{ Route::is('shift.*') ? 'active' : '' }}" style="color: black">
                                 <i class="fa-solid fa-rotate nav-icon"></i>
                                 <p>Shift</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="/admin/master-data/keterangan-izin" class="nav-link {{ Route::is('keterangan.*') ? 'active' : '' }}" style="color: black">
                                 <i class="fa-solid fa-note-sticky nav-icon"></i>
                                 <p>Keterangan Izin</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="/admin/master-data/karyawan"
-                                class="nav-link {{ Route::is('karyawan.*') ? 'active' : '' }}">
+                                class="nav-link {{ Route::is('karyawan.*') ? 'active' : '' }}" style="color: black">
                                 <i class="fa-solid fa-user nav-icon"></i>
                                 <p>Karyawan</p>
                             </a>
@@ -88,9 +85,9 @@
                     </ul>
                 </li>
                 <li
-                    class="nav-item {{ Route::is('absensi.*') ? 'menu-open' : '' }}">
+                    class="nav-item menu-open">
                     <a href="#"
-                        class="nav-link {{ Route::is('absensi.*') ? 'active' : '' }}">
+                        class="nav-link {{ Route::is('absensi.*') ? 'active' : '' }}" style="color: black">
                         <i class="fa-solid fa-database"></i>
                         <p>
                             Absensi
@@ -100,7 +97,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="/admin/absensi/data-absensi"
-                                class="nav-link {{ Route::is('absensi.*') ? 'active' : '' }}">
+                                class="nav-link {{ Route::is('absensi.*') ? 'active' : '' }}" style="color: black">
                                 <i class="fa-solid fa-table nav-icon"></i>
                                 <p>Data Absensi</p>
                             </a>

@@ -24,8 +24,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="{{ asset('asset') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('asset') }}/dist/css/adminlte.min.css">
 
 <body class="hold-transition sidebar-mini layout-fixed">

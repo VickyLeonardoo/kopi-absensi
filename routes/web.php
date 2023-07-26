@@ -3,6 +3,7 @@
 use App\Models\Outlet;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IzinController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShiftController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\OutletController;
 use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\KeteranganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +64,11 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::post('/admin/master-data/karyawan/reset-password-{slug}',[KaryawanController::class,'resetPassword'])->name('karyawan.reset');
         Route::get('/admin/master-data/karyawan/mapping-shift-{slug}',[KaryawanController::class,'viewMappingShift'])->name('karyawan.shift');
         Route::post('/admin/master-data/karyawan/simpan-mapping-absen-{slug}',[KaryawanController::class,'simpanMappingShift'])->name('karyawan.simpan.mapping');
-
+        //Ket Izin
+        Route::get('/admin/master-data/keterangan-izin',[KeteranganController::class,'viewKet'])->name('keterangan.home');
+        Route::post('/admin/master-data/karyawan/simpan-data',[KeteranganController::class,'simpanData'])->name('keterangan.simpan');
+        Route::post('/admin/master-data/karyawan/update-data/{id}',[KeteranganController::class,'updateData'])->name('keterangan.update');
+        Route::post('/admin/master-data/karyawan/hapus-data/{id}',[KeteranganController::class,'hapusData'])->name('keterangan.hapus');
         //Abnsensi
         Route::get('/admin/absensi/data-absensi',[AbsenController::class,'viewDataAbsen'])->name('absensi.home');
 
@@ -77,5 +83,8 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::put('/absen/masuk/{id}', [AbsenController::class, 'jamMasuk'])->name('absen.masuk');
         Route::put('/absen/pulang/{id}', [AbsenController::class, 'jamPulang'])->name('absen.pulang');
 
+        //Izin
+        Route::get('/pegawai/izin',[IzinController::class,'viewIzin'])->name('izin.pegawai');
+        Route::post('/pegawai/izin/simpan-izin',[IzinController::class,'simpanIzin'])->name('izin.simpan');
     });
 });

@@ -21,6 +21,6 @@ class KetIzinSeeder extends Seeder
                 'nama' => 'Menikah',
             ],
         ];
-        DB::table('ket_izins')->insert($ket);
+        DB::table('keterangans')->insert($ket);
     }
 }

@@ -9,7 +9,7 @@
                         <a href="{{ route('karyawan.tambah') }}" class="btn btn-primary">Tambah</a>
                         <hr>
                     </div>
-                    <table id="example" class="table table-bordered table-striped">
+                    <table id="example" class="display">
                         <thead>
                             <tr>
                                 <th>Nama</th>

@@ -38,7 +38,7 @@
                     <hr>
                 </div>
                 <div class="card-body">
-                    <table id="cekAbsensi" class="table table-bordered table-striped">
+                    <table id="cekAbsensi" class="display">
                         <thead>
                             <tr>
                                 <th>No.</th>
@@ -109,7 +109,8 @@
 
                                     <td>{{ $da->status }}</td>
                                     <td>
-                                        <a href="" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                        <a href="" class="btn btn-success" title="Konfirmasi Kehadiran"><i class="fas fa-check"></i></a>
+                                        <a href="" class="btn btn-warning" title="Upload Foto"><i class="fas fa-rotate"></i></a>
                                     </td>
 
                                 </tr>

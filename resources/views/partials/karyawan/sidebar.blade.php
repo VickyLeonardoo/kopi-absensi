@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-warning elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="{{ asset('asset') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
@@ -47,8 +47,8 @@
                     </a>
                 <hr style="background-color:dimgray">
                 </li>
-                <li class="nav-item {{ Route::is('pegawai.absen*','absen.*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Route::is('pegawai.absen*','absen.*') ? 'active' : '' }}">
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link {{ Route::is('pegawai.absen*','absen.*','izin.*') ? 'active' : '' }}">
                         <i class="fa-solid fa-database"></i>
                         <p>
                             Absensi
@@ -68,6 +68,13 @@
                                 class="nav-link {{ Route::is('shift.*') ? 'active' : '' }}">
                                 <i class="fa-solid fa-rotate nav-icon"></i>
                                 <p>My Absen</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/pegawai/izin"
+                                class="nav-link {{ Route::is('izin.*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-sticky-note nav-icon"></i>
+                                <p>Izin</p>
                             </a>
                         </li>
                     </ul>

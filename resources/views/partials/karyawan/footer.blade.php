@@ -10,7 +10,7 @@
             <a class="btn btn-block" href="{{ url('/absen') }}"><i class="fa fas fa-camera" style="{{ route::is('absen*') ? 'color: blue' : '' }}"></i><br><b style="font-size: 12px; {{ route::is('absen*') ? 'color: blue' : '' }}">Absen</b></a>
         </div>
         <div class="col">
-            <a class="btn btn-block" href="{{ url('/my-absen') }}"><i class="fa fas fa-user-secret" style="{{ Request::is('my-absen*') ? 'color: blue' : '' }}"></i><br><b style="font-size: 12px; {{ Request::is('my-absen*') ? 'color: blue' : '' }}">History</b></a>
+            <a class="btn btn-block" href="{{ url('/pegawai/izin') }}"><i class="fa fas fa-user-secret" style="{{ route::is('izin.*') ? 'color: blue' : '' }}"></i><br><b style="font-size: 12px; {{ route::is('izin.*') ? 'color: blue' : '' }}">Izin</b></a>
         </div>
     </div>
 </footer>
