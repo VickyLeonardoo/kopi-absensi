@@ -93,11 +93,16 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::get('/pegawai/absen',[AbsenController::class,'viewAbsen'])->name('absen.pegawai');
         Route::get('/pegawai/absen/upload-foto',[AbsenController::class,'viewUpload'])->name('absen.upload');
         Route::put('/absen/update/{id}', [AbsenController::class, 'uploadFoto'])->name('absen.masuk');
-        Route::put('/absen/masuk/{id}', [AbsenController::class, 'jamMasuk'])->name('absen.masuk');
+        Route::put('/absen/masuk/{id}', [AbsenController::class, 'jamMasuk']);
         Route::put('/absen/pulang/{id}', [AbsenController::class, 'jamPulang'])->name('absen.pulang');
         Route::get('/pegawai/data-absen',[PegawaiController::class,'viewData'])->name('my.absen');
         //Izin
         Route::get('/pegawai/izin',[IzinController::class,'viewIzin'])->name('izin.pegawai');
         Route::post('/pegawai/izin/simpan-izin',[IzinController::class,'simpanIzin'])->name('izin.simpan');
+
+        //Edit Profile
+        Route::get('/karyawan/edit-profile',[KaryawanController::class,'editProfile']);
+        Route::post('/karyawan/update-profile',[KaryawanController::class,'updateProfile']);
+        Route::post('/karyawan/update-password',[KaryawanController::class,'updatePassword']);
     });
 });

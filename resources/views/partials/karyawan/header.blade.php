@@ -109,16 +109,19 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
+                "responsive": true,
+                "autoWidth": false,
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/id.json',
                 }
             });
         });
     </script>
-    <!-- jQuery -->
-    <!-- jQuery UI 1.11.4 -->
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <!-- Bootstrap 4 -->
+
+    <script src="{{ asset('asset') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js">
+    </script>
+    <script src="{{ asset('asset') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js">
+    </script>
     <script src="{{ asset('asset') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- ChartJS -->
     <!-- JQVMap -->

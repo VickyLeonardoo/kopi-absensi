@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absensi;
 use App\Models\User;
 use App\Models\Shift;
 use App\Models\Outlet;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class KaryawanController extends Controller
 {
@@ -141,4 +143,57 @@ class KaryawanController extends Controller
         }
         return redirect()->back()->withToastSuccess('Mapping Shift Berhasil Ditambahkan');
     }
+
+    public function editProfile(){
+        return view('karyawan.viewEditProfile',[
+            'title' => ' View Profile'
+        ]);
+    }
+
+    public function updateProfile(Request $request){
+        $idProfile = Auth()->user()->id;
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'noTelp' => 'required',
+        ],
+        [
+            'nama.required' => 'Nama Wajib Diisi',
+            'email.required' => 'Email Wajib Diisi',
+            'noTelp.required' => 'No Hp Wajib Diisi',
+        ]);
+
+        User::where('id',$idProfile)->update($validatedData);
+        return redirect()->back()->withToastSuccess('Data Berhasil Diupdate');
+    }
+
+    public function updatePassword(Request $request){
+        $idProfile = Auth()->user()->id;
+
+        $this->validate($request, [
+            'password_lama' => 'required',
+            'password' => 'required|min:8',
+            'password_konfirmasi' => 'same:password'
+        ], [
+            'password_lama.required' => 'Password Lama Wajib Diisi',
+            'password.required' => 'Password Bary Wajib Diisi',
+            'password.min' => 'Password Minimal 8 Karakter',
+            'password_konfirmasi.same' => 'Password Tidak Sama',
+        ]);
+
+        $data = $request->all();
+        $user = User::find(auth()->user()->id);
+        // $user = Auth::guard('pelapor')->user()->id ;
+        if (!Hash::check($data['password_lama'], $user->password)) {
+            return redirect()->back()->withToastError('Kamu Salah Memasukkan Password Lama');
+        } else {
+            User::where('id', $idProfile)->update([
+                'password' => bcrypt(Request()->password)
+            ]);
+
+            return redirect()->back()->withToastSuccess('Password Berhasil Diganti.');
+        }
+    }
+
+
 }
