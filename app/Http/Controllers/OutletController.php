@@ -12,7 +12,7 @@ class OutletController extends Controller
 
         return view('admin.outlet.viewOutlet',[
             'title' => 'Data Master Outlet',
-            'outlets' => Outlet::get(),
+            'outlets' => Outlet::paginate(12),
             'slug' => '',
         ]);
     }
@@ -40,8 +40,8 @@ class OutletController extends Controller
         $str = strtolower($request->nama);
         $slug = preg_replace('/\s+/', '-', $str);
         if ($file = $request->file('foto')) {
-            $path = $file->store('public/file'); // Simpan file gambar di direktori storage/app/public/uploads
-            $data['foto'] = str_replace('public/', '', $path); // Simpan path relatif tanpa prefix 'public/' di database
+            $path = $file->store('public/file');
+            $data['foto'] = str_replace('public/', '', $path);
         }
 
         $data['slug'] = $slug;

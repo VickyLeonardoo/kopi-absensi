@@ -56,12 +56,12 @@
                                     <td>{{ $da->jamIn }}</td>
                                     <td>
                                         <?php
-                                        $telat = $da->telat;
-                                        $jam   = floor($telat / (60 * 60));
-                                        $menit = $telat - ( $jam * (60 * 60) );
-                                        $menit2 = floor( $menit / 60 );
-                                        $detik = $telat % 60;
-                                    ?>
+                                            $telat = intval($da->telat); // Konversi ke integer
+                                            $jam = floor($telat / (60 * 60));
+                                            $menit = $telat - ($jam * (60 * 60));
+                                            $menit2 = floor($menit / 60);
+                                            $detik = $telat % 60;
+                                        ?>
                                         @if($jam <= 0 && $menit2 <= 0)
                                             <span class="badge badge-success">Tepat Waktu</span>
                                         @else

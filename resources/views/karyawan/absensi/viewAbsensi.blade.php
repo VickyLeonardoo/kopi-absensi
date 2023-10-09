@@ -179,6 +179,11 @@
                 <br>
                 <div class="card col-lg-12">
                     <div class="mt-4">
+                        <div style="text-align: center">
+                            <img src="{{ asset('asset/img/verif1.jpg') }}" style="border-radius: 10px; height: 250px" width="15%" alt="">
+                            <img src="{{ asset('asset/img/verif1.jpg') }}" style="border-radius: 10px; height: 250px" width="15%" alt="">
+                            <img src="{{ asset('asset/img/verif1.jpg') }}" style="border-radius: 10px; height: 250px" width="15%" alt="">
+                        </div>
                         <form method="post" action="{{ url('/absen/pulang/'.$skid) }}">
                             @method('put')
                             @csrf
@@ -186,7 +191,6 @@
                                 <div class="col"></div>
                                 <div class="col">
                                     <center>
-                                        <h2>Absen Pulang: </h2>
                                         <div class="webcam" id="results"></div>
                                     </center>
                                 </div>
@@ -208,7 +212,7 @@
                 <script type="text/javascript" src="{{ url('webcamjs/webcam.min.js') }}"></script>
                 <script language="JavaScript">
                 Webcam.set({
-                    width: 240,
+                    width: 400,
                     height: 320,
                     image_format: 'jpeg',
                     jpeg_quality: 50

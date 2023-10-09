@@ -1,52 +1,81 @@
 @extends('partials.admin.header')
 @section('content')
-    <section class="content">
-        <section class="container-fluid">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title"></h3>
-                    <div>
-                        <a href="/admin/master-data/outlet/tambah-data" class="btn btn-primary">Tambah</a>
-                        <hr>
+<section class="content">
+    <section class="container-fluid">
+        <div style="text-align: right;">
+                <a href="{{ url('admin/category/') }}" class="btn btn-primary" style="border-radius: 40px; width:25%"><i class="fas fa-plus"></i>Tambah</a>
+        </div>
+            <div class="row">
+                @forelse($outlets as $data)
+                    <div class="col-md-4">
+                        <h6><b>{{ $data->alamat }}</b></h6>
+                        <img src="{{ asset('storage/' . $data->foto) }}"
+                            class="card-img-top-custom" alt="..." style="height: 250px;  border-radius: 40px">
+                            <a class="button-container-custom" href="{{ route('outlet.edit', $data->slug) }}" style="color: black; font-weight:bold;">Selengkapnya ></a>
+                            {{-- <a style="color: black" href="#"> Selengkapnya ></a> --}}
                     </div>
-                    <table id="example" class="display" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>Foto</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($outlets as $data)
-                                <tr>
-                                    <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->alamat }}</td>
-                                    <td><img src="{{ asset('storage/' . $data->foto) }}" alt="Gambar Outlet" width="50">
-                                    </td>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('outlet.edit', $data->slug) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-default-{{ $data->slug }}"><i class="fas fa-trash"></i>Hapus</button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>Foto</th>
-                                <th>Aksi</th>
-
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
+                @empty
+                <h1>Data Outlet Tidak Ditemukan</h1>
+                @endforelse
             </div>
-        </section>
-        @foreach ($outlets as $data)
+        <br>
+        <div class="row">
+            {{ $outlets->links() }}
+        </div>
+    </section>
+</section>
+
+{{-- <section class="content">
+    <section class="container-fluid">
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+                <div>
+                    <a href="/admin/master-data/outlet/tambah-data" class="btn btn-primary">Tambah</a>
+                    <hr>
+                </div>
+                <table id="example" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Alamat</th>
+                            <th>Foto</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($outlets as $data)
+                            <tr>
+                                <td>{{ $data->nama }}</td>
+                                <td>{{ $data->alamat }}</td>
+                                <td><img src="{{ asset('storage/' . $data->foto) }}"
+                                        alt="Gambar Outlet" width="50">
+                                </td>
+                                </td>
+                                <td>
+                                    <a href="{{ route('outlet.edit', $data->slug) }}"
+                                        class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#modal-default-{{ $data->slug }}"><i
+                                            class="fas fa-trash"></i>Hapus</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Alamat</th>
+                            <th>Foto</th>
+                            <th>Aksi</th>
+
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </section>--}}
+    @foreach($outlets as $data)
         <div class="modal fade" id="modal-default-{{ $data->slug }}">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -69,5 +98,5 @@
                 </div>
             </div>
         </div>
-        @endforeach
-    @endsection
+    @endforeach
+@endsection

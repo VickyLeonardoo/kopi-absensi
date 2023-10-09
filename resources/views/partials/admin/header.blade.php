@@ -24,9 +24,36 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="{{ asset('asset') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('asset') }}/dist/css/adminlte.min.css">
+    <style>
 
+        .card-img-top-custom {
+            width: 100%;
+            height: auto;
+        }
+
+        .button-container-custom {
+            position: absolute;
+            bottom: 10px; /* Adjust this value to position the button */
+            left: 70%;
+            transform: translateX(-50%);
+            background-color: #fdfdfc;
+            padding: 5px 10px;
+            border-radius: 50px;
+            width: 50%;
+            text-align: center;
+
+        }
+
+        .button-container a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
 <body class="hold-transition sidebar-mini layout-fixed">
 
 
@@ -39,12 +66,7 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
+
             </ul>
 
             <!-- Right navbar links -->
@@ -57,10 +79,12 @@
                         <i class="fa-solid fa-right-from-bracket"></i>Keluar
                     </a>
                     </form>
+                </li>
+            </ul>
+        </nav>
     </div>
-    </li>
-    </ul>
-    </nav>
+
+
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
@@ -73,14 +97,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">{{ $title }}</h1>
+                        {{-- <h1 class="m-0">{{ $title }}</h1> --}}
                     </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/admin/home">Admin</a></li>
-                            <li class="breadcrumb-item active">{{ $title }}</li>
-                        </ol>
-                    </div><!-- /.col -->
+
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -176,6 +195,8 @@
             $('#cekAbsensiHome').DataTable({
                 "responsive": true,
                 "autoWidth": false,
+                "bLengthChange" : false,
+                "bFilter": false,
                 "lengthMenu": [
                     [10, 25, 50, -1],
                     [10, 25, 50, "All"]

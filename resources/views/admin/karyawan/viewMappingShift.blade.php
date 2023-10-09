@@ -58,7 +58,7 @@
                                         @foreach ($absensi as $data)
                                             <tr>
                                                 <td>{{ $i++ }}</td>
-                                                <td>{{ $data->tglAbsen }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($data->tglAbsen)->isoFormat('D MMMM Y') }} </td>
                                                 <td>{{ $data->shift->nama }}</td>
                                                 <td>{{ $data->shift->jamMasuk }}</td>
                                                 <td>{{ $data->shift->jamPulang }}</td>

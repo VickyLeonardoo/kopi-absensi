@@ -18,50 +18,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            .custom-input {
+              display: block;
+              width: 100%;
+              padding: 0.375rem 0.75rem;
+              font-size: 1rem;
+              line-height: 1.5;
+              color: #495057;
+              background-color: #d9d9d9;
+              background-clip: padding-box;
+              border: 1px solid #f4f4f4;
+              transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+              border-radius: 30px;
+            }
+
+          </style>
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background: rgb(244,244,244)">
     <div class="login-box">
-        <div class="login-logo">
-            <a href="{{ asset('asset') }}/index2.html"><b>PEN</b>KOPI</a>
-        </div>
+            <h3 style="text-align: center">Absensi</h3>
+            <h1 style="text-align: center"><b>Penkopi To Go</b></h1>
         <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-
                 <form action="/prosesLogin" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
+                        <input type="email" class="custom-input" name="email" autocomplete="off" placeholder="Email" value="{{ old('email') }}">
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
+                        <input type="password" class="custom-input" name="password" autocomplete="off" placeholder="Password" value="{{ old('password') }}">
                     </div>
                     <div class="row">
                         <!-- /.col -->
-                        <div class="col-12">
-                            <input type="submit" class="btn btn-primary btn-block" value="SIgn in" name="" id="">
+                        <div class="col-12" style="text-align: center">
+                            <input type="submit" class="btn btn-primary" style="border-radius: 30px; width: 30%" value="Login">
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="mb-1">
-                    <a href="/lupa-password">I forgot my password</a>
-                </p>
-            </div>
             <!-- /.login-card-body -->
-        </div>
     </div>
     <!-- /.login-box -->
     @include('sweetalert::alert')

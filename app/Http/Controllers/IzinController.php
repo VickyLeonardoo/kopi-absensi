@@ -6,6 +6,8 @@ use App\Models\Izin;
 use App\Models\Absensi;
 use App\Models\Keterangan;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\Auth;
 
 class IzinController extends Controller
@@ -23,6 +25,9 @@ class IzinController extends Controller
                 'title' => 'Izin',
                 'izin' => Izin::where('user_id', $id)->get(),
                 'ket' => $ket,
+                'riwayat' => Izin::whereIn('status', ['Setuju', 'Ditolak'])
+                ->where('user_id', $id)
+                ->paginate(5),
             ]);
         }
     }
@@ -48,6 +53,15 @@ class IzinController extends Controller
             $path = $file->store('public/izin'); // Simpan file gambar di direktori storage/app/public/uploads
             $data['fotoIzin'] = str_replace('public/', '', $path); // Simpan path relatif tanpa prefix 'public/' di database
         }
+        //Cek Izin
+        $cekIzin = Izin::where('tglIzin',$data['tglIzin'])->first();
+        $carbonDate = Carbon::parse($data['tglIzin']);
+        $formattedDate = $carbonDate->isoFormat('D MMMM Y');
+
+        if ($cekIzin == True) {
+            return redirect()->back()->withToastError('Anda sudah mengambil Cuti pada Tanggal '.$formattedDate);
+        }
+        return $cekIzin;
         Izin::create($data);
         return redirect()->back()->withToastSuccess('Data Berhasil Disimpan');
     }
@@ -63,7 +77,25 @@ class IzinController extends Controller
             $absensi->delete();
             Izin::find($id)->update(['status'=> 'Setuju']);
         }
-        return redirect()->back()->withToastSuccess('Izin Berhasil Disetujui');
+        return redirect()->route('izin.home')->withToastSuccess('Izin Berhasil Disetujui');
 
+    }
+
+    public function tolakIzin(Request $request,$id){
+        $user_id = $request->user_id;
+        $izin = Izin::find($id);
+        $izin->update([
+            'status' => 'Ditolak'
+        ]);
+        return redirect()->route('izin.home')->withToastSuccess('Izin Berhasil Ditolak');
+
+    }
+
+    public function viewDetailIzin($id){
+        $izin = Izin::findOrFail($id);
+        return view('admin.izin.viewDetail',[
+            'title' => 'View Detail Izin',
+            'izin' => $izin
+        ]);
     }
 }

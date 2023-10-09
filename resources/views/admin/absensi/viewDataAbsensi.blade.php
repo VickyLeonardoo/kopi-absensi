@@ -4,6 +4,9 @@
     <section class="container-fluid">
         <div class="card card-default">
             <div class="card-header">
+
+
+
                 <div class="card-body">
                     <form action="{{ url('/admin/absensi/data-absensi') }}">
                         @csrf
@@ -14,16 +17,19 @@
                                     data-live-search="true">
                                     <option value="" selected>Pilih Pegawai</option>
                                     @foreach($user as $u)
-                                            <option value="{{ $u->id }}">{{ $u->nama }}</option>
+                                        <option value="{{ $u->id }}">{{ $u->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control flatpickr-input" name="mulai" placeholder="Tanggal Mulai" id="mulai" value="{{ request('mulai') }}" onfocus="(this.type='date')">
+                                <input type="text" class="form-control flatpickr-input" name="mulai"
+                                    placeholder="Tanggal Mulai" id="mulai"
+                                    value="{{ request('mulai') }}" onfocus="(this.type='date')">
                             </div>
                             <div class="col-3">
                                 <input type="text" class="form-control" name="akhir" placeholder="Tanggal Akhir"
-                                    id="akhir" value="{{ request('akhir') }}" onfocus="(this.type='date')">
+                                    id="akhir" value="{{ request('akhir') }}"
+                                    onfocus="(this.type='date')">
                             </div>
                             <div>
                                 <button type="submit" id="search" class="form-control btn btn-primary"><i
@@ -56,11 +62,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data_absen as $da)
+                            @foreach($data_absen as $da)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $da->user->nama }}</td>
-                                    <td>{{ $da->shift->nama }}~({{ $da->shift->jamMasuk }} - {{ $da->shift->jamPulang }})</td>
+                                    <td>{{ $da->shift->nama }}~({{ $da->shift->jamMasuk }} -
+                                        {{ $da->shift->jamPulang }})</td>
                                     <td>{{ date('d-M-Y', strtotime($da->tglAbsen)); }}</td>
                                     <td>{{ $da->jamIn }}</td>
                                     <td>
@@ -74,15 +81,18 @@
                                         @if($jam <= 0 && $menit2 <= 0)
                                             <span class="badge badge-success">Tepat Waktu</span>
                                         @else
-                                            <span class="badge badge-danger">{{ $jam." Jam ".$menit2." Menit" }}</span>
+                                            <span
+                                                class="badge badge-danger">{{ $jam." Jam ".$menit2." Menit" }}</span>
                                         @endif
                                     </td>
 
                                     <td>
-                                        @if (!$da->fotoMasuk)
-                                        ~
+                                        @if(!$da->fotoMasuk)
+                                            ~
                                         @else
-                                        <img src="{{ asset('storage/' . $da->fotoMasuk) }}" alt="Gambar Foto Masuk" width="50">
+                                            <button type="button" class="btn" data-toggle="modal" data-target="#fotoMasukModal{{ $da->id }}">
+                                                <img src="{{ asset('storage/' . $da->fotoMasuk) }}" alt="Gambar Foto Masuk" width="50">
+                                            </button>
                                         @endif
                                     <td>{{ $da->jamOut }}</td>
                                     <td>
@@ -96,30 +106,35 @@
                                         @if($jam <= 0 && $menit2 <= 0)
                                             <span class="badge badge-success">Tepat Waktu</span>
                                         @else
-                                            <span class="badge badge-danger">{{ $jam." Jam ".$menit2." Menit" }}</span>
+                                            <span
+                                                class="badge badge-danger">{{ $jam." Jam ".$menit2." Menit" }}</span>
                                         @endif
                                     </td>
                                     <td>
                                         @if(!$da->fotoPulang)
-                                        ~
+                                            ~
                                         @else
-                                        <img src="{{ asset('storage/' . $da->fotoPulang) }}" alt="Gambar Outlet" width="50">
+                                        <button type="button" class="btn" data-toggle="modal" data-target="#fotoKeluarModal{{ $da->id }}">
+                                            <img src="{{ asset('storage/' . $da->fotoPulang) }}" alt="Gambar Outlet" width="50">
+                                        </button>
                                         @endif
                                     </td>
 
                                     <td>
-                                        @if ($da->status == 'Pending')
-                                            <span class="badge badge-warning">{{ $da->status }}</span></td>
-                                        @elseif ($da->status == 'Hadir')
-                                            <span class="badge badge-success">{{ $da->status }}</span></td>
-                                        @else
-                                            <span class="badge badge-danger">{{ $da->status }}</span></td>
-                                        @endif
-                                    <td>
-                                        <button type="button" class="btn btn-success" title="Setuju " data-toggle="modal" data-target="#modal-default-{{ $da->id }}"><i class="fas fa-tasks"></i></button>
+                                        @if($da->status == 'Pending')
+                                            <span class="badge badge-warning">{{ $da->status }}</span>
                                     </td>
+                                @elseif($da->status == 'Hadir')
+                                    <span class="badge badge-success">{{ $da->status }}</span></td>
+                                @else
+                                    <span class="badge badge-danger">{{ $da->status }}</span></td>
+                            @endif
+                            <td>
+                                <button type="button" class="btn btn-success" title="Setuju " data-toggle="modal"
+                                    data-target="#modal-default-{{ $da->id }}"><i class="fas fa-tasks"></i></button>
+                            </td>
 
-                                </tr>
+                            </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
@@ -142,7 +157,40 @@
                 </div>
             </div>
         </div>
+
     </section>
 </section>
+<!-- Modal -->
+@foreach($data_absen as $da)
+<div class="modal fade" id="fotoMasukModal{{ $da->id }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <img src="{{ asset('storage/' . $da->fotoMasuk) }}" alt="Gambar Foto Masuk" width="auto">
+        </div>
+    </div>
+</div>
+@endforeach
+
+@foreach($data_absen as $da)
+<div class="modal fade" id="fotoKeluarModal{{ $da->id }}">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <img src="{{ asset('storage/' . $da->fotoPulang) }}" alt="Gambar Foto Masuk" width="auto">
+        </div>
+    </div>
+</div>
+@endforeach
 @include('admin.absensi.modal')
 @endsection

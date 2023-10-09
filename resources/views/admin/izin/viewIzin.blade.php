@@ -26,7 +26,7 @@
                                 <td>{{ $data->tglIzin }}</td>
                                 <td><img src="{{ asset('storage/' . $data->fotoIzin) }}" alt="Gambar Izin" width="50">
                                 <td>
-                                    <button type="button" class="btn btn-success" title="Setuju " data-toggle="modal" data-target="#modal-default-{{ $data->id }}"><i class="fas fa-check"></i></button>
+                                    <a href="/admin/izin/detail-izin/{{ $data->id }}" class="btn btn-info" title="Detail">Cek Detail</a>
                                 </td>
                             </tr>
                         @endforeach

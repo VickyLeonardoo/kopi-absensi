@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IzinController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\WebcamController;
@@ -74,15 +75,32 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::post('/admin/master-data/karyawan/simpan-mapping-absen-{slug}',[KaryawanController::class,'simpanMappingShift'])->name('karyawan.simpan.mapping');
         //Ket Izin
         Route::get('/admin/master-data/keterangan-izin',[KeteranganController::class,'viewKet'])->name('keterangan.home');
-        Route::post('/admin/master-data/karyawan/simpan-data',[KeteranganController::class,'simpanData'])->name('keterangan.simpan');
-        Route::post('/admin/master-data/karyawan/update-data/{id}',[KeteranganController::class,'updateData'])->name('keterangan.update');
-        Route::post('/admin/master-data/karyawan/hapus-data/{id}',[KeteranganController::class,'hapusData'])->name('keterangan.hapus');
+        Route::post('/admin/master-data/keterangan/simpan-data',[KeteranganController::class,'simpanData'])->name('keterangan.simpan');
+        Route::post('/admin/master-data/keterangan/update-data/{id}',[KeteranganController::class,'updateData'])->name('keterangan.update');
+        Route::post('/admin/master-data/keterangan/hapus-data/{id}',[KeteranganController::class,'hapusData'])->name('keterangan.hapus');
         //Abnsensi
         Route::get('/admin/absensi/data-absensi',[AbsenController::class,'viewDataAbsen'])->name('absensi.home');
         Route::post('/admin/absensi/konfirmasi-absensi/{id}',[AbsenController::class,'konfirmasiAbsen'])->name('absensi.konfirmasi');
         //Izin
         Route::get('/admin/izin/data-izin',[IzinController::class,'viewIzin'])->name('izin.home');
         Route::post('/admin/izin/setuju-izin/{id}',[IzinController::class,'setujuIzin'])->name('izin.setuju');
+        Route::post('/admin/izin/tolak-izin/{id}',[IzinController::class,'tolakIzin'])->name('izin.tolak');
+        Route::get('/admin/izin/detail-izin/{id}',[IzinController::class,'viewDetailIzin'])->name('izin.detail');
+
+        //Profile
+        Route::get('/admin/profile',[AdminController::class,'showProfile'])->name('profile');
+        Route::post('/admin/update-profile',[AdminController::class,'updateProfile']);
+        Route::get('/admin/password',[AdminController::class,'showPassword'])->name('profile.password');
+        Route::post('/admin/update-password',[AdminController::class,'updatePassword']);
+
+        //Owner Data Admin
+        Route::get('/owner/admin',[OwnerController::class,'viewAdmin'])->name('owner.admin');
+        Route::get('/owner/admin/tambah-data',[OwnerController::class,'viewTambah'])->name('owner.admin.tambah');
+        Route::post('/owner/admin/simpan-data',[OwnerController::class,'simpanAdmin'])->name('owner.admin.simpan');
+        Route::get('/owner/admin/{id}/edit',[OwnerController::class,'viewEditAdmin'])->name('owner.admin.edit');
+        Route::post('/owner/admin/{id}/update',[OwnerController::class,'updateAdmin'])->name('owner.admin.update');
+        Route::get('/owner/admin/hapus-data/{id}',[OwnerController::class,'hapusAdmin'])->name('owner.admin.hapus');
+;
     });
 });
 

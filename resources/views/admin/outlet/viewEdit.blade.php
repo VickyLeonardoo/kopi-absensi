@@ -20,7 +20,7 @@
                                 <label for="">Foto Outlet:</label>
                                 <input type="file" class="form-control" name="foto">
                                 <hr>
-                                <img src="{{ asset('storage/' . $outlet->foto) }}" alt="Gambar Outlet" width="50">
+                                <img src="{{ asset('storage/' . $outlet->foto) }}" alt="Gambar Outlet" width="100%">
                             </div>
 
                             <div class="form-group">

@@ -18,7 +18,7 @@ class Cek_login
     public function handle($request, Closure $next, ...$roles)
     {
         if (!auth::check()) {
-            return redirect('login');
+            return redirect('login')->withToastError('Error, Kamu Belum Login!');
         }
 
         $user = Auth::user();

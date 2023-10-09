@@ -23,10 +23,10 @@
                             <div class="form-group">
                                 <label for="">Outlet</label>
                                 <select name="outlet_id" id="" class="form-control">
-                                    <option value="{{ $karyawan->outlet_id }}">{{ $karyawan->outlet->nama }}</option>
-                                    <option value="" disabled>----</option>
+                                    {{-- <option value="{{ $karyawan->outlet_id }}">{{ $karyawan->outlet->nama }} - {{ $karyawan->outlet->alamat }}</option>
+                                    <option value="" disabled>----</option> --}}
                                     @foreach ($outlet as $data)
-                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                    <option value="{{ $data->id }}" {{ $data->id == $karyawan->outlet_id ? 'selected':''}}>{{ $data->nama }} - {{ $karyawan->outlet->alamat }}</option>
                                     @endforeach
                                 </select>
                             </div>
