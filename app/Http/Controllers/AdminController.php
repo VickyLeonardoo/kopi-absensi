@@ -47,11 +47,11 @@ class AdminController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string',
             'email' => 'required|email',
-            'noTelp' => 'required|digits:12'
+            'noTelp' => 'required'
         ],[
             'nama.required' => 'Nama Wajib Diisi',
             'email.required' => 'Email Wajib Diisi',
-            'noTelp' => 'No Telfon Wajib Diisi',
+            'noTelp.required' => 'No Telfon Wajib Diisi',
         ]);
 
         User::where('id',auth()->user()->id)->update($validatedData);

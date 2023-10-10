@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
                 'role' => '1',
                 'outlet_id' => '1',
                 'slug' => 'owner',
+                'is_active' => 0
             ],
             [
                 'nama' => 'Admin',
@@ -30,7 +31,8 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345'),
                 'role' => '2',
                 'outlet_id' => '1',
-                'slug' => 'admin'
+                'slug' => 'admin',
+                'is_active' => 0
 
             ],
             [
@@ -40,7 +42,8 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345'),
                 'role' => '3',
                 'outlet_id' => '2',
-                'slug' => 'andi'
+                'slug' => 'andi',
+                'is_active' => 0
 
             ],
             [
@@ -50,7 +53,8 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345'),
                 'role' => '3',
                 'outlet_id' => '2',
-                'slug' => 'deni'
+                'slug' => 'deni',
+                'is_active' => 0
 
             ],
             [
@@ -60,7 +64,8 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('12345'),
                 'role' => '3',
                 'outlet_id' => '2',
-                'slug' => 'roy'
+                'slug' => 'roy',
+                'is_active' => 1
 
             ],
 

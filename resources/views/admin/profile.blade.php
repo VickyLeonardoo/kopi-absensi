@@ -7,7 +7,7 @@
                 <div class="text-left" style="font-size: 30px; font-weight:bold;">
                     <img class="profile-user-img img-fluid img-circle"
                         src="{{ asset('asset') }}/dist/img/user4.jpg " alt="User profile picture">
-                        &nbsp;&nbsp;&nbsp;&nbsp;Admin <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;{{ auth()->user()->nama }} <br>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/admin/password" class="btn btn-primary ml-5" style="width: 10%; text-white;">Ubah Password</a>
                 </div>
                 <br>

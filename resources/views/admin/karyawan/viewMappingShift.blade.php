@@ -63,8 +63,7 @@
                                                 <td>{{ $data->shift->jamMasuk }}</td>
                                                 <td>{{ $data->shift->jamPulang }}</td>
                                                 <td>
-                                                    <a href="" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                                    <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                    <a href="{{ route('karyawan.hapus.mapping',$data->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

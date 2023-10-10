@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Hash;
 class KaryawanController extends Controller
 {
     public function viewKaryawan(){
-        $karyawan = User::where('role','3')->get();
+        $karyawan = User::where('role','3')->where('is_active', '0')->get();
         return view('admin.karyawan.viewKaryawan',[
             'title' => 'View Karyawan',
             'karyawan' => $karyawan,
-
         ]);
     }
 
@@ -48,6 +47,7 @@ class KaryawanController extends Controller
             'role' => 3,
             'password' => bcrypt('12345'),
             'slug' => $slug,
+            'is_active' => 0,
         ];
 
         User::create($data);
@@ -97,7 +97,13 @@ class KaryawanController extends Controller
     }
 
     public function hapusData($slug){
-        User::where('slug',$slug)->delete();
+        $user = User::where('slug',$slug)->first();
+        $absensi = Absensi::where('user_id',$user->id)->first();
+        if ($absensi) {
+            $user->update(['is_active' => 1]);
+        }else{
+            $user->delete();
+        }
         return redirect()->back()->withToastSuccess('Pegawai Berhasil Dihapus');
     }
 
@@ -113,6 +119,8 @@ class KaryawanController extends Controller
         ]);
     }
 
+
+
     public function simpanMappingShift(Request $request, $slug){
         date_default_timezone_set('Asia/Jakarta');
         $karyawan = User::where('slug',$slug)->first();
@@ -121,27 +129,44 @@ class KaryawanController extends Controller
         $end = new \DateTime($request["tglAkhir"]);
         $end = $end->modify('+1 day');
 
-        $interval = new \DateInterval('P1D'); //referensi : https://en.wikipedia.org/wiki/ISO_8601#Durations
-        $daterange = new \DatePeriod($begin, $interval ,$end);
+        $interval = new \DateInterval('P1D');
+        $daterange = new \DatePeriod($begin, $interval, $end);
 
         foreach ($daterange as $date) {
             $tanggal = $date->format("Y-m-d");
-            $validatedData = $request->validate([
-                'shift_id' => 'required',
-                'tglMulai' => 'required',
-                'tglAkhir' => 'required',
-            ],
-            [
-                'shift_id.required' => 'Shift Wajib Diisi',
-                'tglMulai.required' => 'Tanggal Mulai Wajib Diisi',
-                'tglAkhir.required' => 'Tanggal Akhir Wajib Diisi',
-            ]);
-            $validatedData["user_id"] = $id;
-            $validatedData["tglAbsen"] = $tanggal;
 
-            Absensi::create($validatedData);
+            // Periksa apakah tanggal sudah ada dalam database
+            $existingRecord = Absensi::where('user_id', $id)
+                ->where('tglAbsen', $tanggal)
+                ->first();
+
+            if (!$existingRecord) {
+                $validatedData = $request->validate([
+                    'shift_id' => 'required',
+                    'tglMulai' => 'required',
+                    'tglAkhir' => 'required',
+                ], [
+                    'shift_id.required' => 'Shift Wajib Diisi',
+                    'tglMulai.required' => 'Tanggal Mulai Wajib Diisi',
+                    'tglAkhir.required' => 'Tanggal Akhir Wajib Diisi',
+                ]);
+
+                $validatedData["user_id"] = $id;
+                $validatedData["tglAbsen"] = $tanggal;
+
+                Absensi::create($validatedData);
+            }
         }
+
         return redirect()->back()->withToastSuccess('Mapping Shift Berhasil Ditambahkan');
+    }
+
+
+
+    public function hapusMappingShift($id){
+        $absensi = Absensi::findOrFail($id);
+        $absensi->delete();
+        return redirect()->back()->withToastSuccess('Data Berhasil Dihapus');
     }
 
     public function editProfile(){

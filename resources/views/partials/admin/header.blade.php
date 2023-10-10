@@ -17,18 +17,15 @@
         integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="{{ asset('asset') }}/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-        href="{{ asset('asset') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('asset') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="{{ asset('asset') }}/dist/css/adminlte.min.css">
     <style>
-
         .card-img-top-custom {
             width: 100%;
             height: auto;
@@ -36,7 +33,8 @@
 
         .button-container-custom {
             position: absolute;
-            bottom: 10px; /* Adjust this value to position the button */
+            bottom: 10px;
+            /* Adjust this value to position the button */
             left: 70%;
             transform: translateX(-50%);
             background-color: #fdfdfc;
@@ -52,8 +50,12 @@
             text-decoration: none;
             font-weight: bold;
         }
+        .dataTables_length {
+            margin-top: 10px; /* Sesuaikan dengan jarak yang Anda inginkan */
+        }
     </style>
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 
 
@@ -64,7 +66,8 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
 
             </ul>
@@ -124,19 +127,10 @@
 
     <script src="{{ asset('asset') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('asset') }}/dist/js/adminlte.js"></script>
-
-
-    <script src="{{ asset('asset') }}/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('asset') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js">
-    </script>
-    <script src="{{ asset('asset') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js">
-    </script>
-    <script src="{{ asset('asset') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js">
-    </script>
-    <script src="{{ asset('asset') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js">
-    </script>
-    <script src="{{ asset('asset') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js">
-    </script>
+    <script src="{{ asset('asset') }}/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('asset') }}/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="{{ asset('asset') }}/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="{{ asset('asset') }}/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
     <script src="{{ asset('asset') }}/plugins/jszip/jszip.min.js"></script>
     <script src="{{ asset('asset') }}/plugins/pdfmake/pdfmake.min.js"></script>
     <script src="{{ asset('asset') }}/plugins/pdfmake/vfs_fonts.js"></script>
@@ -145,7 +139,7 @@
     <script src="{{ asset('asset') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#example').DataTable({
                 "responsive": true,
                 "autoWidth": false,
@@ -195,7 +189,7 @@
             $('#cekAbsensiHome').DataTable({
                 "responsive": true,
                 "autoWidth": false,
-                "bLengthChange" : false,
+                "bLengthChange": false,
                 "bFilter": false,
                 "lengthMenu": [
                     [10, 25, 50, -1],
@@ -203,7 +197,6 @@
                 ]
             });
         });
-
     </script>
 
 

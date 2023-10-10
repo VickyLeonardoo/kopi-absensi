@@ -25,6 +25,7 @@ class User extends Authenticatable
         'noTelp',
         'outlet_id',
         'slug',
+        'is_active',
     ];
 
     /**

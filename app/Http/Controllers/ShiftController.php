@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Shift;
 use Illuminate\Http\Request;
 
@@ -60,8 +61,14 @@ class ShiftController extends Controller
     }
 
     public function hapusData($id){
-        Shift::where('id',$id)->delete();
-        return redirect()->route('shift.master')->withToastSuccess('Data Shift Berhasil Dihapus');
+        $shift = Shift::findOrFail($id);
+        $absensi = Absensi::where('shift_id',$id)->first();
+        if ($absensi) {
+            return redirect()->route('shift.master')->withToastError('Absensi Tidak Dapat Dihapus');
 
+        }else{
+            $shift->delete();
+            return redirect()->route('shift.master')->withToastSuccess('Data Shift Berhasil Dihapus');
+        }
     }
 }

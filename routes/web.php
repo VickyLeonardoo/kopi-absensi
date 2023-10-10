@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::post('/admin/master-data/karyawan/reset-password-{slug}',[KaryawanController::class,'resetPassword'])->name('karyawan.reset');
         Route::get('/admin/master-data/karyawan/mapping-shift-{slug}',[KaryawanController::class,'viewMappingShift'])->name('karyawan.shift');
         Route::post('/admin/master-data/karyawan/simpan-mapping-absen-{slug}',[KaryawanController::class,'simpanMappingShift'])->name('karyawan.simpan.mapping');
+        Route::get('/admin/master-data/karyawan/mapping-shift/{id}/hapus',[KaryawanController::class,'hapusMappingShift'])->name('karyawan.hapus.mapping');
+
         //Ket Izin
         Route::get('/admin/master-data/keterangan-izin',[KeteranganController::class,'viewKet'])->name('keterangan.home');
         Route::post('/admin/master-data/keterangan/simpan-data',[KeteranganController::class,'simpanData'])->name('keterangan.simpan');

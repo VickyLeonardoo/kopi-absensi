@@ -31,11 +31,17 @@ class PegawaiController extends Controller
             } else {
                 $tanggal = $tglskrg;
             }
+
         $karyawan = User::where('role','3')->get();
+        $tanggal_mulai = date('Y-m-01');
+        $tanggal_akhir = date('Y-m-d');
+        $absBulan = Absensi::whereBetween('tglAbsen', [$tanggal_mulai, $tanggal_akhir])->where('user_id',auth()->user()->id)->count();
+
         return view('karyawan.viewHome',[
             'title' => 'View Karyawan',
             'karyawan' => $karyawan,
-            'shift_karyawan' => Absensi::where('user_id', $user_login)->where('tglAbsen', $tanggal)->get()
+            'shift_karyawan' => Absensi::where('user_id', $user_login)->where('tglAbsen', $tanggal)->get(),
+            'absBulan' => $absBulan,
         ]);
     }
 

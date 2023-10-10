@@ -39,6 +39,7 @@ class OwnerController extends Controller
         $validatedData['outlet_id'] = 1;
         $validatedData['role'] = 2;
         $validatedData['password'] = bcrypt('12345');
+        $validatedData['is_active'] = 0;
 
         User::create($validatedData);
         return redirect()->route('owner.admin')->withToastSuccess('Data Admin Berhasil Ditambahkan');

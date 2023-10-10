@@ -22,9 +22,12 @@ class Cek_login
         }
 
         $user = Auth::user();
-
-        if (in_array($user->role, $roles)) {
-            return $next($request);
+        if ($user->is_active == 0) {
+            if (in_array($user->role, $roles)) {
+                return $next($request);
+            }
+        }else{
+            return redirect('login')->withToastError('Akun tidak Active');
         }
 
         return redirect('login')->withToastError('Kamu Tidak Punya Akses');

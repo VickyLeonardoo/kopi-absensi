@@ -78,7 +78,9 @@
                                         $menit2 = floor( $menit / 60 );
                                         $detik = $telat % 60;
                                     ?>
-                                        @if($jam <= 0 && $menit2 <= 0)
+                                        @if (!$da->jamIn)
+                                            <span class="badge badge-warning">Belum Absen</span>
+                                        @elseif($jam <= 0 && $menit2 <= 0)
                                             <span class="badge badge-success">Tepat Waktu</span>
                                         @else
                                             <span
@@ -103,7 +105,9 @@
                                         $menit2 = floor( $menit / 60 );
                                         $detik = $telat % 60;
                                     ?>
-                                        @if($jam <= 0 && $menit2 <= 0)
+                                        @if (!$da->jamOut)
+                                            <span class="badge badge-warning">Belum Absen</span>
+                                        @elseif($jam <= 0 && $menit2 <= 0)
                                             <span class="badge badge-success">Tepat Waktu</span>
                                         @else
                                             <span

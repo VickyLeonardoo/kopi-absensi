@@ -143,7 +143,7 @@
                         </div>
                         <div class="col">
                             <h6><b>Hadir</b></h6>
-                            {{ Auth::guard('user')->user()->absensi->whereBetween('tglAbsen', [$tanggal_mulai, $tanggal_akhir])->where('status', '=', 'Hadir')->count() }} Hari
+                            {{ $absBulan }} Hari
                         </div>
                     </div>
                 </div>

@@ -41,14 +41,14 @@ class IzinController extends Controller
             'user_id' => 'required',
             'tglIzin' => 'required',
         ], [
+            'keterangan_id.required' => 'Keterangan Wajib Diisi',
             'nama.required' => 'Keterangan Wajib Diisi',
             'foto.required' => 'Foto Wajib Diisi',
             'foto.image' => 'File harus berupa gambar',
             'foto.mimes' => 'Format gambar harus jpeg, png, jpg, atau gif',
             'foto.max' => 'Ukuran gambar maksimal 2MB',
-            'tglIzin.require' => 'Tanggal Wajib Diisi',
+            'tglIzin.required' => 'Tanggal Wajib Diisi',
         ]);
-
         if ($file = $request->file('foto')) {
             $path = $file->store('public/izin'); // Simpan file gambar di direktori storage/app/public/uploads
             $data['fotoIzin'] = str_replace('public/', '', $path); // Simpan path relatif tanpa prefix 'public/' di database
@@ -61,7 +61,6 @@ class IzinController extends Controller
         if ($cekIzin == True) {
             return redirect()->back()->withToastError('Anda sudah mengambil Cuti pada Tanggal '.$formattedDate);
         }
-        return $cekIzin;
         Izin::create($data);
         return redirect()->back()->withToastSuccess('Data Berhasil Disimpan');
     }
