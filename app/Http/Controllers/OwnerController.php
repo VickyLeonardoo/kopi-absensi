@@ -10,7 +10,7 @@ class OwnerController extends Controller
     public function viewAdmin(){
         return view('owner.viewAdmin',[
             'title' => 'Data Admin',
-            'admins' => User::where('role','2')->paginate(10),
+            'admins' => User::where('role','2')->where('is_active' ,'0')->paginate(10),
         ]);
     }
 
@@ -73,7 +73,7 @@ class OwnerController extends Controller
     public function hapusAdmin($id){
         $user = User::findOrFail($id);
         $name = $user->nama;
-        $user->delete();
+        $user->update(['is_active' => '1']);
         return redirect()->route('owner.admin')->withToastSuccess('Admin'.' '.$name.' '.'Berhasil Dihapus');
     }
 }

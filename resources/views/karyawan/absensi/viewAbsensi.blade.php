@@ -126,6 +126,9 @@
                 <br>
                     <div class="card col-lg-12">
                         <div class="mt-4">
+                            <div style="text-align: center">
+                                <img src="{{ asset('asset/img/CENTANG.svg') }}" style="border-radius: 10px; height: 250px" width="50%" alt="">
+                            </div>
                             <form method="post" action="{{ url('/absen/masuk/'.$skid) }}">
                                 @method('put')
                                 @csrf
@@ -180,9 +183,7 @@
                 <div class="card col-lg-12">
                     <div class="mt-4">
                         <div style="text-align: center">
-                            <img src="{{ asset('asset/img/verif1.jpg') }}" style="border-radius: 10px; height: 250px" width="15%" alt="">
-                            <img src="{{ asset('asset/img/verif1.jpg') }}" style="border-radius: 10px; height: 250px" width="15%" alt="">
-                            <img src="{{ asset('asset/img/verif1.jpg') }}" style="border-radius: 10px; height: 250px" width="15%" alt="">
+                            <img src="{{ asset('asset/img/CENTANG.svg') }}" style="border-radius: 10px; height: 250px" width="50%" alt="">
                         </div>
                         <form method="post" action="{{ url('/absen/pulang/'.$skid) }}">
                             @method('put')

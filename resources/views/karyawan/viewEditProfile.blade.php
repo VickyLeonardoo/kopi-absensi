@@ -17,7 +17,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control" name="email" value="{{ auth()->user()->email }}">
+                                <input type="text" class="form-control" name="email" readonly value="{{ auth()->user()->email }}">
                             </div>
                             <div class="form-group">
                                 <label>No Hp</label>

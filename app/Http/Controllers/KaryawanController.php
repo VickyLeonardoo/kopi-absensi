@@ -201,7 +201,7 @@ class KaryawanController extends Controller
             'password_konfirmasi' => 'same:password'
         ], [
             'password_lama.required' => 'Password Lama Wajib Diisi',
-            'password.required' => 'Password Bary Wajib Diisi',
+            'password.required' => 'Password Baru Wajib Diisi',
             'password.min' => 'Password Minimal 8 Karakter',
             'password_konfirmasi.same' => 'Password Tidak Sama',
         ]);

@@ -380,7 +380,7 @@
         </nav>
     </div>
     <div style="text-align: center">
-        <a href="" class="btn"
+        <a href="{{ url('/logout') }}" class="btn"
         style="color: white; background-color: #ff004e; width: 50%; font-size: 18px; font-weight: bold">
         <i class="fa-solid fa-sign-out"> </i>Logout
     </a>
