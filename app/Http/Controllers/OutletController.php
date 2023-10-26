@@ -13,7 +13,7 @@ class OutletController extends Controller
 
         return view('admin.outlet.viewOutlet',[
             'title' => 'Data Master Outlet',
-            'outlets' => Outlet::paginate(12),
+            'outlets' => Outlet::where('is_active','0')->paginate(12),
             'slug' => '',
         ]);
     }
@@ -101,16 +101,18 @@ class OutletController extends Controller
     public function hapusData($slug){
         $outlet = Outlet::where('slug', $slug)->firstOrFail();
         $idOutlet = $outlet->id;
-        $userFindOutlet = User::where('outlet_id', $idOutlet)->first();
-        if ($userFindOutlet) {
-            return redirect()->back()->withToastError('Outlet Tidak Dapat Dihapus Karna data telah ada');
-        }else{
-            $this->hapusFotoLama($outlet);
-            $outlet->delete();
-            return redirect()->route('outlet.master')->withToastSuccess('Data Outlet Berhasil Dihapus');
-        }
+        $totalKaryawan = User::where('outlet_id', $idOutlet)->count();
+        $totalKaryawanNonActive = User::where('outlet_id', $idOutlet)->where('is_active', 0)->count();
 
+        if ($totalKaryawanNonActive > 0) {
+            return redirect()->route('outlet.master')->withToastError('Tidak dapat menghapus data outlet karena ada pengguna aktif');
+        } else {
+            $this->hapusFotoLama($outlet);
+            $outlet->update(['is_active' => 1]);
+            return redirect()->route('outlet.master')->withToastSuccess('Data Outlet Berhasil Dinonaktifkan');
+        }
     }
+
 
     private function hapusFotoLama($outlet){
         if ($outlet->foto) {

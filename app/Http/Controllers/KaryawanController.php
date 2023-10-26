@@ -23,7 +23,7 @@ class KaryawanController extends Controller
     public function viewTambahData(){
         return view('admin.karyawan.viewTambahData',[
             'title' => 'Tambah Data Karyawan',
-            'outlet' => Outlet::all(),
+            'outlet' => Outlet::where('is_active','0')->get(),
         ]);
     }
 
@@ -59,7 +59,8 @@ class KaryawanController extends Controller
         return  view('admin.karyawan.viewEdit',[
             'title' => 'Edit Karyawan',
             'karyawan' => $karyawan,
-            'outlet' => Outlet::all(),
+            'outlet' => Outlet::where('is_active','0')->get(),
+
         ]);
     }
 

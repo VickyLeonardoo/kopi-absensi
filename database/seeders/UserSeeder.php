@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                 'email' => 'owner@example.com',
                 'password' => bcrypt('12345'),
                 'role' => '1',
-                'outlet_id' => '1',
+                'outlet_id' => '3',
                 'slug' => 'owner',
                 'is_active' => 0
             ],
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@example.com',
                 'password' => bcrypt('12345'),
                 'role' => '2',
-                'outlet_id' => '1',
+                'outlet_id' => '3',
                 'slug' => 'admin',
                 'is_active' => 0
 
