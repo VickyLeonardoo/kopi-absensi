@@ -3,7 +3,7 @@
 <section class="content">
     <section class="container-fluid">
         <div style="text-align: right;">
-                <a href="{{ url('admin/category/') }}" class="btn btn-primary" style="border-radius: 40px; width:25%"><i class="fas fa-plus"></i>Tambah</a>
+                <a href="{{ url('admin/master-data/outlet/tambah-data/') }}" class="btn btn-primary" style="border-radius: 40px; width:25%"><i class="fas fa-plus"></i>Tambah</a>
         </div>
             <div class="row">
                 @forelse($outlets as $data)

@@ -53,6 +53,11 @@
         .dataTables_length {
             margin-top: 10px; /* Sesuaikan dengan jarak yang Anda inginkan */
         }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
     </style>
 </head>
 

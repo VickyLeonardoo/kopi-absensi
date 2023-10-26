@@ -20,7 +20,7 @@
 
                             <div class="form-group">
                                 <label for="">No Telp Pegawai</label>
-                                <input type="text" class="form-control" placeholder="Masukkan No Telp Pegawai" name="noTelp" value="{{ old('noTelp') }}">
+                                <input type="number" class="form-control" placeholder="Masukkan No Telp Pegawai" name="noTelp" value="{{ old('noTelp') }}">
                             </div>
 
                             <div class="form-group">

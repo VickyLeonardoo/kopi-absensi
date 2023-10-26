@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::post('/admin/master-data/outlet/simpan-data',[OutletController::class,'simpanData'])->name('outlet.simpan');
         Route::get('/admin/master-data/outlet/edit-data-{slug}',[OutletController::class,'viewEdit'])->name('outlet.edit');
         Route::post('/admin/master-data/outlet/update-data-{slug}',[OutletController::class,'updateData'])->name('outlet.update');
-        Route::post('/admin/master-data/outlet/hapus-data-{slug}',[OutletController::class,'hapusData'])->name('outlet.hapus');
+        Route::get('/admin/master-data/outlet/hapus-data-{slug}',[OutletController::class,'hapusData'])->name('outlet.hapus');
         //Shift Route
         Route::get('/admin/master-data/shift',[ShiftController::class,'viewShift'])->name('shift.master');
         Route::get('/admin/master-data/shift/tambah-data',[ShiftController::class,'viewTambahData'])->name('shift.tambah');

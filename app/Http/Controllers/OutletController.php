@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Outlet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -99,11 +100,15 @@ class OutletController extends Controller
 
     public function hapusData($slug){
         $outlet = Outlet::where('slug', $slug)->firstOrFail();
-        $this->hapusFotoLama($outlet);
-
-        $outlet->delete();
-
-        return redirect()->route('outlet.master')->withToastSuccess('Data Outlet Berhasil Dihapus');
+        $idOutlet = $outlet->id;
+        $userFindOutlet = User::where('outlet_id', $idOutlet)->first();
+        if ($userFindOutlet) {
+            return redirect()->back()->withToastError('Outlet Tidak Dapat Dihapus Karna data telah ada');
+        }else{
+            $this->hapusFotoLama($outlet);
+            $outlet->delete();
+            return redirect()->route('outlet.master')->withToastSuccess('Data Outlet Berhasil Dihapus');
+        }
 
     }
 

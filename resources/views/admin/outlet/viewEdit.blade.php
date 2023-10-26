@@ -24,7 +24,8 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" class="btn-primary form-control" value="SIMPAN">
+                                <input type="submit" class="btn btn-primary" value="SIMPAN">
+                                <a href="{{ route('outlet.hapus',$outlet->slug) }}" class="btn btn-danger"><i class="fas fa-trash"></i>Hapus</a>
                             </div>
                         </form>
                     </div>
