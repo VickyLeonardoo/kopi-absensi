@@ -156,16 +156,52 @@
                 buttons: [{
                         extend: 'excelHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1, 2, 3, 4, 5, 7, 8, 10]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2]
+                            columns: [0, 1, 2, 3, 4, 5, 7, 8, 10]
                         }
                     }
                 ]
+            });
+
+            $('#shift').DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+            });
+
+            $('#keteranganIzin').DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+            });
+
+            $('#dataKaryawan').DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+            });
+
+            $('#cekIzin').DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
             });
 
             $('#cekAbsensi').DataTable({

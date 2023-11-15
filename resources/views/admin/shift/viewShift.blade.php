@@ -9,7 +9,7 @@
                         <a href="{{ route('shift.tambah') }}" class="btn btn-primary">Tambah</a>
                         <hr>
                     </div>
-                    <table id="example" class="display" style="width:100%">
+                    <table id="shift" class="display" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Jam Masuk</th>

@@ -70,6 +70,16 @@ class OwnerController extends Controller
         return redirect()->back()->withToastSuccess('Data Berhasil Diupdate');
     }
 
+    public function resetPassword($slug){
+        $data = [
+            'password' => bcrypt('12345')
+        ];
+
+        User::where('slug',$slug)->update($data);
+        return redirect()->back()->withToastSuccess('Password Berhasil Direset');
+    }
+
+
     public function hapusAdmin($id){
         $user = User::findOrFail($id);
         $name = $user->nama;

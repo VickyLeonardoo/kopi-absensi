@@ -16,7 +16,7 @@ class IzinController extends Controller
         if (Auth::guard('user')->user()->role == 1 || Auth::guard('user')->user()->role == 2) {
             return view('admin.izin.viewIzin',[
                 'title' => 'Izin',
-                'izin' => Izin::where('status', 'Pending')->get(),
+                'izin' => Izin::get(),
             ]);
         } else {
             $id = auth()->id();

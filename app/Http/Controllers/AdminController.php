@@ -23,11 +23,11 @@ class AdminController extends Controller
         return view('admin.viewHome',[
             'title' => 'Penkopi - Home',
             'karyawan' => User::where('role' , 3)->where('is_active','0')->count(),
-            'outlet' => Outlet::count(),
+            'outlet' => Outlet::where('is_active','0')->count(),
             'izin' => Izin::where('status','Pending')->count(),
             'data_absen' => $data_absen->get(),
             'tglFormat' => $tglFormat,
-            'admin' => User::where('role','2')->count(),
+            'admin' => User::where('role','2')->where('is_active', '0')->count(),
         ]);
     }
 

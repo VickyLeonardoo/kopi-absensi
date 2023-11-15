@@ -3,12 +3,9 @@
 <section class="content">
     <section class="container-fluid">
         <div class="card">
-            <div class="card-body">
-                <button type="button" class="btn btn-info" title="Tambah Data" data-toggle="modal" data-target="#modal-request"><i class="fas fa-plus"></i>Request Izin</button>
-            </div>
             <hr>
             <div class="card-body">
-                <table id="example" class="display">
+                <table id="cekIzin" class="display">
                     <thead>
                         <tr>
                             <th>No</th>

@@ -9,7 +9,7 @@
                     <button type="button" class="btn btn-info" title="Tambah Data" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus"></i></button>
                     <hr>
                 </div>
-                <table id="example" class="display">
+                <table id="keteranganIzin" class="display">
                     <thead>
                         <tr>
                             <th>No</th>

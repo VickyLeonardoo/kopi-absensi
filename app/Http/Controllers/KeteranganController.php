@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Keterangan;
+use Exception;
 use Illuminate\Http\Request;
 
 class KeteranganController extends Controller
@@ -36,8 +37,20 @@ class KeteranganController extends Controller
     }
 
     public function hapusData($id){
-        Keterangan::find($id)->delete();
-        return redirect()->back()->withToastSuccess('Data Berhasil Dihapus.');
+        try {
+            $keterangan = Keterangan::find($id);
+            if ($keterangan) {
+                $keterangan->delete();
+                return redirect()->back()->withToastSuccess('Data Berhasil Dihapus.');
+            } else {
+                return redirect()->back()->withToastError('Data Tidak Ditemukan.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withToastError('Data Tidak Dapat Dihapus. ');
+        }
     }
+    
 
+   
+    
 }

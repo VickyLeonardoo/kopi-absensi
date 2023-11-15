@@ -77,7 +77,7 @@ class AbsenController extends Controller
         $mapping_shift = Absensi::where('id', $id)->get();
 
         foreach ($mapping_shift as $mp) {
-            $shift = $mp->shift->jamMasuk;
+            $shift = $mp->shift->toleransi;
             $tanggal = $mp->tglAbsen;
         }
 
