@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('outlet_id')->references('id')->on('outlets');
             $table->integer('role');
             $table->string('slug')->unique();
+            $table->bigInteger('gaji')->nullable();
             $table->integer('is_active');
             $table->timestamps();
         });

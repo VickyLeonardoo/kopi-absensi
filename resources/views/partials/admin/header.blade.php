@@ -143,6 +143,7 @@
     <script src="{{ asset('asset') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="{{ asset('asset') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    @yield('chart')
     <script>
         $(document).ready(function() {
             $('#example').DataTable({

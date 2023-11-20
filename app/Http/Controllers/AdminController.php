@@ -17,9 +17,7 @@ class AdminController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         $tglskrg = date('Y-m-d'); //Ngambil Tanggal Sekarang
         $data_absen = Absensi::where('tglAbsen', $tglskrg); //mengambil semua data absensi berdasarkan tanggal yang sudah di deklarasi
-
         $tglFormat = Carbon::now()->isoFormat('dddd, D MMMM Y');
-
         return view('admin.viewHome',[
             'title' => 'Penkopi - Home',
             'karyawan' => User::where('role' , 3)->where('is_active','0')->count(),

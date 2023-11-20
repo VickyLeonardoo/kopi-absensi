@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Absensi;
 use Illuminate\Http\Request;
@@ -36,11 +37,22 @@ class AbsenController extends Controller
     }
 
     public function viewAbsen(){
+        date_default_timezone_set('Asia/Jakarta');
+
         $user_login = Auth::guard('user')->user()->id;
         $tanggal = "";
         $tglskrg = date('Y-m-d');
-        $tglkmrn = date('Y-m-d', strtotime('-1 days'));
+        $tglkmrn = date('Y-m-d');
+        $cekJam = date('H:i');
+        $button = 0;
         $mapping_shift = Absensi::where('user_id', $user_login)->where('tglAbsen', $tglkmrn)->get();
+        $cekShift = Absensi::where('user_id', $user_login)->where('tglAbsen', $tglkmrn)->first();
+        $shift = $cekShift->shift->jamPulang;
+        if ($cekJam < $shift) {
+            $button = $button;
+        }else{
+            $button = 1;
+        }
         if($mapping_shift->count() > 0) {
             foreach($mapping_shift as $mp) {
                 $jam_absen = $mp->jamIn;
@@ -57,6 +69,7 @@ class AbsenController extends Controller
         }
         return view('karyawan.absensi.viewAbsensi',[
             'title' => 'Absensi',
+            'btn' => $button,
             'shift_karyawan' => Absensi::where('user_id', $user_login)->where('tglAbsen', $tanggal)->get(),
         ]);
     }
@@ -135,7 +148,7 @@ class AbsenController extends Controller
         $akhir = strtotime($new_tanggal . $shiftpulang);
         $awal  = strtotime($tgl_skrg . $request["jamOut"]);
         $diff  = $akhir - $awal;
-
+        $cekJam = Carbon::now();
         if ($diff <= 0) {
             $request["pulangCepat"] = 0;
         } else {

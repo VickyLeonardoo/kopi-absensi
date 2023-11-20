@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::get('/admin/master-data/karyawan/mapping-shift-{slug}',[KaryawanController::class,'viewMappingShift'])->name('karyawan.shift');
         Route::post('/admin/master-data/karyawan/simpan-mapping-absen-{slug}',[KaryawanController::class,'simpanMappingShift'])->name('karyawan.simpan.mapping');
         Route::get('/admin/master-data/karyawan/mapping-shift/{id}/hapus',[KaryawanController::class,'hapusMappingShift'])->name('karyawan.hapus.mapping');
+        //Statistik Karyawan
+        Route::get('/admin/karyawan/{slug}/statistik',[KaryawanController::class,'viewStatistik'])->name('karyawan.statistik');
 
         //Ket Izin
         Route::get('/admin/master-data/keterangan-izin',[KeteranganController::class,'viewKet'])->name('keterangan.home');
@@ -102,7 +104,8 @@ Route::group(['middleware' => ['auth:user']],function(){
         Route::get('/owner/admin/{id}/edit',[OwnerController::class,'viewEditAdmin'])->name('owner.admin.edit');
         Route::post('/owner/admin/{id}/update',[OwnerController::class,'updateAdmin'])->name('owner.admin.update');
         Route::get('/owner/admin/hapus-data/{id}',[OwnerController::class,'hapusAdmin'])->name('owner.admin.hapus');
-;
+
+        //Statistik
     });
 });
 

@@ -1,5 +1,6 @@
 @extends('partials.admin.header')
 @section('content')
+
     <section class="content">
         <section class="container-fluid">
             <div class="card card-default">
@@ -29,7 +30,7 @@
                                         <button type="button" class="btn btn-warning" title="Reset Password" data-toggle="modal" data-target="#modal-reset-password-{{ $data->slug }}"><i class="fas fa-key"></i></button>
                                         <a href="{{ route('karyawan.shift', $data->slug) }}" class="btn btn-success" title="Mapping Shift"><i class="fas fa-clock"></i></a>
                                         <button type="button" class="btn btn-danger" title="Hapus Pegawai" data-toggle="modal" data-target="#modal-default-{{ $data->slug }}"><i class="fas fa-trash"></i></button>
-                                    </td>
+                                        <a href="{{ route('karyawan.statistik',$data->slug) }}" class="btn btn-info" title="Statistik Karyawan"><i class="fa-solid fa-chart-simple"></i></a>
                                 </tr>
                             @endforeach
                         </tbody>

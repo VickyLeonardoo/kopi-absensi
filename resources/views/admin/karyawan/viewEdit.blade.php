@@ -21,6 +21,10 @@
                                 <input type="text" class="form-control" name="noTelp" value="{{ $karyawan->noTelp }}">
                             </div>
                             <div class="form-group">
+                                <label for="">Gaji</label>
+                                <input type="number" class="form-control" name="gaji" value="{{ $karyawan->gaji }}">
+                            </div>
+                            <div class="form-group">
                                 <label for="">Outlet</label>
                                 <select name="outlet_id" id="" class="form-control">
                                     {{-- <option value="{{ $karyawan->outlet_id }}">{{ $karyawan->outlet->nama }} - {{ $karyawan->outlet->alamat }}</option>

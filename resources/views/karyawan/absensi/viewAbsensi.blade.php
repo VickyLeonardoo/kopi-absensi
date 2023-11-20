@@ -202,7 +202,9 @@
                             </div>
                             <br>
                             <center>
+                                @if ($btn == 1)
                                 <button type="submit" class="btn btn-primary" value="Ambil Foto" onClick="take_snapshot()">Pulang</button>
+                                @endif
                             </center>
                         </form>
                         <br>

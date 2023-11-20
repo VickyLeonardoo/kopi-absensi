@@ -22,7 +22,10 @@
                                 <label for="">No Telp Pegawai</label>
                                 <input type="number" class="form-control" placeholder="Masukkan No Telp Pegawai" name="noTelp" value="{{ old('noTelp') }}">
                             </div>
-
+                            <div class="form-group">
+                                <label for="">Gaji</label>
+                                <input type="number" class="form-control" placeholder="Masukkan Gaji" name="gaji" value="{{ old('gaji') }}">
+                            </div>
                             <div class="form-group">
                                 <label for="">Outlet</label>
                                 <select name="outlet_id" id="" class="form-control">
