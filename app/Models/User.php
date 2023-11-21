@@ -26,6 +26,7 @@ class User extends Authenticatable
         'outlet_id',
         'slug',
         'is_active',
+        'gaji',
     ];
 
     /**
