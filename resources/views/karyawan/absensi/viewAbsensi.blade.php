@@ -182,31 +182,35 @@
                 <br>
                 <div class="card col-lg-12">
                     <div class="mt-4">
+                        @if ($btn == 1)
                         <div style="text-align: center">
                             <img src="{{ asset('asset/img/CENTANG.svg') }}" style="border-radius: 10px; height: 250px" width="50%" alt="">
                         </div>
-                        <form method="post" action="{{ url('/absen/pulang/'.$skid) }}">
-                            @method('put')
-                            @csrf
-                            <div class="form-row">
-                                <div class="col"></div>
-                                <div class="col">
-                                    <center>
-                                        <div class="webcam" id="results"></div>
-                                    </center>
+                            <form method="post" action="{{ url('/absen/pulang/'.$skid) }}">
+                                @method('put')
+                                @csrf
+                                <div class="form-row">
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <center>
+                                            <div class="webcam" id="results"></div>
+                                        </center>
+                                    </div>
+                                    <div class="col">
+                                        <input type="hidden" name="jamOut">
+                                        <input type="hidden" name="fotoPulang" class="image-tag">
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <input type="hidden" name="jamOut">
-                                    <input type="hidden" name="fotoPulang" class="image-tag">
-                                </div>
+                                <br>
+                                <center>
+                                    <button type="submit" class="btn btn-primary" value="Ambil Foto" onClick="take_snapshot()">Pulang</button>
+                                </center>
+                            </form>
+                        @else
+                            <div class="text-center">
+                                <h4>Tidak dapat sign-out sebelum jam Pulang</h4>
                             </div>
-                            <br>
-                            <center>
-                                @if ($btn == 1)
-                                <button type="submit" class="btn btn-primary" value="Ambil Foto" onClick="take_snapshot()">Pulang</button>
-                                @endif
-                            </center>
-                        </form>
+                        @endif
                         <br>
                     </div>
                 </div>
